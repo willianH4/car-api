@@ -1,5 +1,7 @@
 package com.williamhdz.cars.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -50,8 +52,9 @@ public class Car {
 		this.owner = owner;
 	}
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "owner")
+	@JsonIgnoreProperties("cars") // Evita serializar la propiedad "cars" de Owner
 	private Owner owner;
 
 	//Getter  and  setter

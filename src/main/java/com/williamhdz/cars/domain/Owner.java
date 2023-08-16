@@ -2,6 +2,9 @@ package com.williamhdz.cars.domain;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,6 +15,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "owners")
 public class Owner {
 	
@@ -35,6 +39,7 @@ public class Owner {
 		this.lastname = lastname;
 	}
 	
+	@JsonIgnore
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="owner")
 	private List<Car> cars;
 	
